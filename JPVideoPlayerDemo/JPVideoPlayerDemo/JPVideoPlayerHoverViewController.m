@@ -33,7 +33,7 @@
     [super viewDidLoad];
 
     self.navigationController.jp_useCustomPopAnimationForCurrentViewController = YES;
-    self.title = @"悬停播放";
+    self.title = @"Hover play";
 
     self.tableView = ({
         UITableView *view = [UITableView new];

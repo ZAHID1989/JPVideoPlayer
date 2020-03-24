@@ -51,7 +51,7 @@
     // Clear all cache.
     // 清空所有缓存
      [[JPVideoPlayerCache sharedCache] clearDiskOnCompletion:^{
-         NSLog(@"clear disk finished, 清空磁盘完成");
+         NSLog(@"clear disk finished, Empty Disk Complete");
          
          __strong typeof(weakSelf) strongSelf = weakSelf;
          if (!strongSelf) return;
@@ -95,11 +95,11 @@
         __strong typeof(weakSelf) strongSelf = weakSelf;
         if (!strongSelf) return;
 
-        NSString *cacheStr = [NSString stringWithFormat:@"总缓存大小: %0.2fMB, 总缓存文件数: %ld 个", (unsigned long) totalSize / 1024. / 1024., (unsigned long) fileCount];
+        NSString *cacheStr = [NSString stringWithFormat:@"Total cache size:%0.2f MB, Total cache files:%ld", (unsigned long) totalSize / 1024. / 1024., (unsigned long) fileCount];
 
         strongSelf.cacheLabel.text = cacheStr;
 
-        cacheStr = [cacheStr stringByAppendingString:@", 你可以使用框架提供的方法, 清除所有缓存或指定的缓存, 具体请查看 `JPVideoPlayerCache`\n"];
+        cacheStr = [cacheStr stringByAppendingString:@", You can use the method provided by the framework to clear all or specified caches. For details, please see 'JPVideoPlayerCache'\n"];
         printf("%s", [cacheStr UTF8String]);
     }];
 }
@@ -115,7 +115,7 @@
     UIViewController *vc = [[UIViewController alloc]init];
     vc.hidesBottomBarWhenPushed = YES;
     vc.view.backgroundColor = [UIColor whiteColor];
-    vc.title = @"扫描加入 NewPan 和他的朋友们群";
+    vc.title = @"Scan to join NewPan and his group of friends";
     
     NSArray *colors = @[[UIColor colorWithRed:98.0/255.0 green:152.0/255.0 blue:209.0/255.0 alpha:1], [UIColor colorWithRed:190.0/255.0 green:53.0/255.0 blue:77.0/255.0 alpha:1]];
     NSString *codeStr = @"http://qm.qq.com/cgi-bin/qm/qr?k=iOcOSuD9eYS7kdmcclRFnWFkHZbGIjdm";

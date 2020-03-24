@@ -29,7 +29,7 @@
     if(self){
         self.label = ({
             UILabel *label = [UILabel new];
-            label.text = @"测试 Masonry 布局";
+            label.text = @"Test Masonry layout";
             [self addSubview:label];
             label.backgroundColor = [UIColor colorWithWhite:1 alpha:0.7];
             [label mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -57,7 +57,7 @@
 @implementation JPVideoPlayerDetailViewController
 
 - (void)dealloc{
-    NSLog(@"JPVideoPlayerDetailViewController 释放了");
+    NSLog(@"JPVideoPlayerDetailViewController Released");
 }
 
 - (void)viewDidLoad{

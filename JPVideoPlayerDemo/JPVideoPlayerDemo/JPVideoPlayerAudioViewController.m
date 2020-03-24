@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
-    self.title = @"音频播放";
+    self.title = @"Music player";
     [self.audioView jp_playVideoWithURL:[NSURL URLWithString:@"http://music.163.com/song/media/outer/url?id=518066666.mp3"]
                      bufferingIndicator:nil
                             controlView:nil progressView:nil

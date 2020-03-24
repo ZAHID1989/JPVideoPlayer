@@ -32,22 +32,22 @@
     JPNavigationController *weiboNavigationController = [[JPNavigationController alloc]initWithRootViewController:[JPVideoPlayerWeiBoViewController new]];
     weiboNavigationController.tabBarItem.image = [[UIImage imageNamed:@"jp_videoplayer_weibo"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     weiboNavigationController.tabBarItem.selectedImage = [[UIImage imageNamed:@"jp_videoplayer_weibo_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    weiboNavigationController.title = @"微博";
+    weiboNavigationController.title = @"Weibo";
 
     JPVideoPlayerDouyinViewController *douyinViewController = [JPVideoPlayerDouyinViewController new];
     douyinViewController.tabBarItem.image = [[UIImage imageNamed:@"jp_videoplayer_douyin"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     douyinViewController.tabBarItem.selectedImage = [[UIImage imageNamed:@"jp_videoplayer_douyin_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    douyinViewController.title = @"抖音";
+    douyinViewController.title = @"Dǒu yīn";
     
     JPNavigationController *netEasyNavigationController = [[JPNavigationController alloc] initWithRootViewController:[JPVPNetEasyViewController new]];
     netEasyNavigationController.tabBarItem.image = [[UIImage imageNamed:@"jp_videoplayer_netease"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     netEasyNavigationController.tabBarItem.selectedImage = [[UIImage imageNamed:@"jp_videoplayer_netease_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    netEasyNavigationController.title = @"网易云音乐";
+    netEasyNavigationController.title = @"Netease Cloud Music";
     
     JPNavigationController *settingNavigationController = [[JPNavigationController alloc]initWithRootViewController:[JPVideoPlayerSettingViewController new]];
     settingNavigationController.tabBarItem.image = [[UIImage imageNamed:@"jp_videoplayer_setting"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     settingNavigationController.tabBarItem.selectedImage = [[UIImage imageNamed:@"jp_videoplayer_setting_selected"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    settingNavigationController.title = @"设置";
+    settingNavigationController.title = @"Set up";
     
     UITabBarController *tabVC = [[UITabBarController alloc]init];
     tabVC.viewControllers = @[weiboNavigationController, douyinViewController,netEasyNavigationController,settingNavigationController];

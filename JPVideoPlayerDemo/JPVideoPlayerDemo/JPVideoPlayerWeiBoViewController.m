@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.title = @"微博";
+    self.title = @"Weibo";
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
 }
 
@@ -64,7 +64,7 @@
 
 - (NSArray<NSString *> *)cellTypeStrings {
     if(!_cellTypeStrings){
-       _cellTypeStrings = @[@"不等高 Cell 自动播放", @"等高 Cell 自动播放", @"悬停播放", @"音频播放"];
+       _cellTypeStrings = @[@"Irregular Cell Autoplay", @"Contour Cell Autoplay", @"Hover play", @"Music player"];
     }
     return _cellTypeStrings;
 }
