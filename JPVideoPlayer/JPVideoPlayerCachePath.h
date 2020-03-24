@@ -69,6 +69,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)videoPlaybackRecordFilePath;
 
+/**
+ * Exclude  file path to sync to iCloud.
+ *
+ */
++ (void)excludePathIfNeed:(NSString *)path;
+
 @end
 
 

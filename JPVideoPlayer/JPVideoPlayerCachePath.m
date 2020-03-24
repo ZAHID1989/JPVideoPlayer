@@ -29,6 +29,7 @@ static NSString * const kJPVideoPlayerCacheVideoPlaybackRecordFileExtension = @"
             stringByAppendingPathComponent:kJPVideoPlayerCacheVideoPathDomain];
     if (![fileManager fileExistsAtPath:path]){
         [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+        [JPVideoPlayerCachePath excludePathIfNeed:path];
     }
     return path;
 }
@@ -53,6 +54,7 @@ static NSString * const kJPVideoPlayerCacheVideoPlaybackRecordFileExtension = @"
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:filePath]) {
         [fileManager createFileAtPath:filePath contents:nil attributes:nil];
+        [JPVideoPlayerCachePath excludePathIfNeed:filePath];
     }
     return filePath;
 }
@@ -78,6 +80,7 @@ static NSString * const kJPVideoPlayerCacheVideoPlaybackRecordFileExtension = @"
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:filePath]) {
         [fileManager createFileAtPath:filePath contents:nil attributes:nil];
+        [JPVideoPlayerCachePath excludePathIfNeed:filePath];
     }
     return filePath;
 }
@@ -91,8 +94,15 @@ static NSString * const kJPVideoPlayerCacheVideoPlaybackRecordFileExtension = @"
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:filePath]) {
         [fileManager createFileAtPath:filePath contents:nil attributes:nil];
+        [JPVideoPlayerCachePath excludePathIfNeed:filePath];
     }
     return filePath;
+}
+
++ (void)excludePathIfNeed:(NSString *)path {
+    //add check should disable iCloud
+     // disable iCloud backup
+    [[NSURL fileURLWithPath:path] setResourceValue:@YES forKey:NSURLIsExcludedFromBackupKey error:nil];
 }
 
 @end
@@ -111,6 +121,7 @@ static NSString * const kJPVideoPlayerCacheVideoPlaybackRecordFileExtension = @"
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:path]) {
         [fileManager createFileAtPath:path contents:nil attributes:nil];
+        [JPVideoPlayerCachePath excludePathIfNeed:path];
     }
     return path;
 }
@@ -142,6 +153,7 @@ static NSString * const kJPVideoPlayerCacheVideoPlaybackRecordFileExtension = @"
             stringByAppendingPathComponent:apdStr];
     if (![fileManager fileExistsAtPath:path]){
         [fileManager createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+        [JPVideoPlayerCachePath excludePathIfNeed:path];
     }
     return path;
 }
