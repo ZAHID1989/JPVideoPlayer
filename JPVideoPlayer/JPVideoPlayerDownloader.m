@@ -141,7 +141,7 @@
     self.runningTask = requestTask;
     requestTask.request = request;
     requestTask.unownedSession = self.session;
-    JPDebugLog(@"Downloader 处理完一个请求");
+    JPDebugLog(@"Downloader After processing a request");
 }
 
 
@@ -164,7 +164,7 @@ willPerformHTTPRedirection:(NSHTTPURLResponse *)response
           dataTask:(NSURLSessionDataTask *)dataTask
 didReceiveResponse:(NSURLResponse *)response
  completionHandler:(void (^)(NSURLSessionResponseDisposition disposition))completionHandler {
-    JPDebugLog(@"URLSession 收到响应");
+    JPDebugLog(@"URLSession Received response");
     //'304 Not Modified' is an exceptional one.
     if (![response respondsToSelector:@selector(statusCode)] || (((NSHTTPURLResponse *)response).statusCode < 400 && ((NSHTTPURLResponse *)response).statusCode != 304)) {
         NSInteger expected = MAX((NSInteger)response.expectedContentLength, 0);
@@ -254,10 +254,10 @@ didReceiveResponse:(NSURLResponse *)response
               task:(NSURLSessionTask *)task
 didCompleteWithError:(NSError *)error {
     JPDispatchSyncOnMainQueue(^{
-        JPDebugLog(@"URLSession 完成了一个请求, id 是 %ld, error 是: %@", task.taskIdentifier, error);
+        JPDebugLog(@"URLSession Completed a request, id is: %ld, error is: %@", task.taskIdentifier, error);
         BOOL completeValid = self.runningTask && task.taskIdentifier == self.runningTask.dataTask.taskIdentifier;
         if(!completeValid){
-            JPDebugLog(@"URLSession 完成了一个不是正在请求的请求, id 是: %d", task.taskIdentifier);
+            JPDebugLog(@"URLSession completed a request that is not being requested, id is: %d", task.taskIdentifier);
             return;
         }
 
@@ -334,7 +334,7 @@ downloadCompletionHandler:(void (^)(NSCachedURLResponse *cachedResponse))downloa
 }
 
 - (void)reset {
-    JPDebugLog(@"调用了 reset");
+    JPDebugLog(@"Called reset");
     self.runningTask = nil;
     self.expectedSize = 0;
     self.receivedSize = 0;

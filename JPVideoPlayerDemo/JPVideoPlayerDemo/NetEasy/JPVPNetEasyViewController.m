@@ -96,7 +96,7 @@
 #pragma mark - Setup
 
 - (void)setup {
-    self.title = @"网易云音乐";
+    self.title = @"Netease Cloud Music";
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([JPVPNetEasyTableViewCell class]) bundle:nil] forCellReuseIdentifier:NSStringFromClass([JPVPNetEasyTableViewCell class])];
     // 本地视频播放.
     NSString *locVideoPath = [[NSBundle mainBundle]pathForResource:@"designedByAppleInCalifornia" ofType:@"mp4"];

@@ -85,7 +85,7 @@
 shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loadingRequest {
     if (resourceLoader && loadingRequest){
         [self.loadingRequests addObject:loadingRequest];
-        JPDebugLog(@"ResourceLoader 接收到新的请求, 当前请求数: %ld <<<<<<<<<<<<<<", self.loadingRequests.count);
+        JPDebugLog(@"ResourceLoader received a new request, the current number of requests: %ld <<<<<<<<<<<<<<", self.loadingRequests.count);
         if(!self.runningLoadingRequest){
             [self findAndStartNextLoadingRequestIfNeed];
         }
@@ -97,7 +97,7 @@ shouldWaitForLoadingOfRequestedResource:(AVAssetResourceLoadingRequest *)loading
 didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
     if ([self.loadingRequests containsObject:loadingRequest]) {
         if(loadingRequest == self.runningLoadingRequest){
-            JPDebugLog(@"取消了一个正在进行的请求");
+            JPDebugLog(@"Canceled an ongoing request");
             if(self.runningLoadingRequest && self.runningRequestTask){
                 [self.runningRequestTask cancel];
             }
@@ -108,12 +108,12 @@ didCancelLoadingRequest:(AVAssetResourceLoadingRequest *)loadingRequest {
             [self findAndStartNextLoadingRequestIfNeed];
         }
         else {
-            JPDebugLog(@"取消了一个不在进行的请求");
+            JPDebugLog(@"Canceled a request that is not in progress");
             [self.loadingRequests removeObject:loadingRequest];
         }
     }
     else {
-        JPDebugLog(@"要取消的请求已经完成了");
+        JPDebugLog(@"The request to cancel has been completed");
     }
 }
 
@@ -126,7 +126,7 @@ didCompleteWithError:(NSError *)error {
         return;
     }
     if (![self.requestTasks containsObject:requestTask]) {
-        JPDebugLog(@"完成的 task 不是正在进行的 task");
+        JPDebugLog(@"Completed tasks are not ongoing tasks");
         return;
     }
 
@@ -143,14 +143,14 @@ didCompleteWithError:(NSError *)error {
 
 - (void)finishCurrentRequestWithError:(NSError *)error {
     if (error) {
-        JPDebugLog(@"ResourceLoader 完成一个请求 error: %@", error);
+        JPDebugLog(@"ResourceLoader completes a request error: %@", error);
         [self.runningRequestTask.loadingRequest finishLoadingWithError:error];
         [self.loadingRequests removeObject:self.runningLoadingRequest];
         [self removeCurrentRequestTaskAndResetAll];
         [self findAndStartNextLoadingRequestIfNeed];
     }
     else {
-        JPDebugLog(@"ResourceLoader 完成一个请求, 没有错误");
+        JPDebugLog(@"ResourceLoader completes a request without error");
         // 要所有的请求都完成了才行.
         [self.requestTasks removeObject:self.runningRequestTask];
         if(!self.requestTasks.count){ // 全部完成.
@@ -189,7 +189,7 @@ didCompleteWithError:(NSError *)error {
                                         range:(NSRange)dataRange {
     /// 是否已经完全缓存完成.
     BOOL isCompleted = self.cacheFile.isCompleted;
-    JPDebugLog(@"ResourceLoader 处理新的请求, 数据范围是: %@, 是否已经缓存完成: %@", NSStringFromRange(dataRange), isCompleted ? @"是" : @"否");
+    JPDebugLog(@"ResourceLoader handles new requests, the data range is: %@, whether it has been cached: %@", NSStringFromRange(dataRange), isCompleted ? @"Yes" : @"No");
     if (dataRange.length == NSUIntegerMax) {
         [self addTaskWithLoadingRequest:loadingRequest
                                   range:NSMakeRange(dataRange.location, NSUIntegerMax)
@@ -243,7 +243,7 @@ didCompleteWithError:(NSError *)error {
                            cached:(BOOL)cached {
     JPResourceLoadingRequestTask *task;
     if(cached){
-        JPDebugLog(@"ResourceLoader 创建了一个本地请求");
+        JPDebugLog(@"ResourceLoader created a local request");
         task = [JPResourceLoadingRequestLocalTask requestTaskWithLoadingRequest:loadingRequest
                                                                    requestRange:range
                                                                       cacheFile:self.cacheFile
@@ -256,7 +256,7 @@ didCompleteWithError:(NSError *)error {
                                                                     cacheFile:self.cacheFile
                                                                     customURL:self.customURL
                                                                        cached:cached];
-        JPDebugLog(@"ResourceLoader 创建一个网络请求: %@", task);
+        JPDebugLog(@"ResourceLoader creates a network request: %@", task);
         if (self.delegate && [self.delegate respondsToSelector:@selector(resourceLoader:didReceiveLoadingRequestTask:)]) {
             [self.delegate resourceLoader:self didReceiveLoadingRequestTask:(JPResourceLoadingRequestWebTask *)task];
         }

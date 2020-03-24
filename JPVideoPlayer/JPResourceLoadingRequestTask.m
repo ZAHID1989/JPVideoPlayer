@@ -125,7 +125,7 @@ static const NSString *const kJPVideoPlayerContentRangeKey = @"Content-Range";
 }
 
 - (void)cancel {
-    JPDebugLog(@"调用了 RequestTask 的取消方法");
+    JPDebugLog(@"The cancellation method of RequestTask was called");
     int lock = pthread_mutex_trylock(&_lock);;
     self.executing = NO;
     self.cancelled = YES;
@@ -222,7 +222,7 @@ static const NSString *const kJPVideoPlayerContentRangeKey = @"Content-Range";
         return;
     }
 
-    JPDebugLog(@"开始响应本地请求");
+    JPDebugLog(@"Start responding to local requests");
     // task fetch data from disk.
     int lock = pthread_mutex_trylock(&_plock);
     NSUInteger offset = self.requestRange.location;
@@ -237,7 +237,7 @@ static const NSString *const kJPVideoPlayerContentRangeKey = @"Content-Range";
             offset = NSMaxRange(range);
         }
     }
-    JPDebugLog(@"完成本地请求");
+    JPDebugLog(@"Complete local request");
     if (!lock) {
         pthread_mutex_unlock(&_plock);
     }
@@ -340,7 +340,7 @@ static const NSString *const kJPVideoPlayerContentRangeKey = @"Content-Range";
     [self synchronizeCacheFileIfNeeded];
     if (self.dataTask) {
         // cancel web request.
-        JPDebugLog(@"取消了一个网络请求, id 是: %d", self.dataTask.taskIdentifier);
+        JPDebugLog(@"Canceled a network request, id is: %d", self.dataTask.taskIdentifier);
         [self.dataTask cancel];
         JPDispatchSyncOnMainQueue(^{
             [[NSNotificationCenter defaultCenter] postNotificationName:JPVideoPlayerDownloadStopNotification object:self];
@@ -383,7 +383,7 @@ static const NSString *const kJPVideoPlayerContentRangeKey = @"Content-Range";
     
     NSURLSession *session = self.unownedSession;
     self.dataTask = [session dataTaskWithRequest:self.request];
-    JPDebugLog(@"开始网络请求, 网络请求创建一个 dataTask, id 是: %d", self.dataTask.taskIdentifier);
+    JPDebugLog(@"Start a network request.The network request creates a dataTask with an id: %d", self.dataTask.taskIdentifier);
     [self.dataTask resume];
     if (self.dataTask) {
         [[NSNotificationCenter defaultCenter] postNotificationName:JPVideoPlayerDownloadStartNotification object:self];
@@ -422,7 +422,7 @@ static const NSString *const kJPVideoPlayerContentRangeKey = @"Content-Range";
         static BOOL _needLog = YES;
         if(_needLog) {
             _needLog = NO;
-            JPDebugLog(@"收到数据响应, 数据长度为: %u", data.length);
+            JPDebugLog(@"Received data response, the data length is: %u", data.length);
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t) (1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 _needLog = YES;
             });

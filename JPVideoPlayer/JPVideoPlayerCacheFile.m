@@ -422,7 +422,7 @@ static const NSString *kJPVideoPlayerCacheFileResponseHeadersKey = @"com.newpan.
         dict[kJPVideoPlayerCacheFileZoneKey] = rangeArray;
     }
 
-    JPDebugLog(@"存储字典: %@", dict);
+    JPDebugLog(@"Storage dictionary: %@", dict);
 
     if (self.responseHeaders) {
         dict[kJPVideoPlayerCacheFileResponseHeadersKey] = self.responseHeaders;

@@ -593,7 +593,7 @@ didReceiveLoadingRequestTask:(JPResourceLoadingRequestWebTask *)requestTask {
 static NSTimeInterval _awakeWaitingTimeInterval = 3;
 - (void)resetAwakeWaitingTimeInterval {
     _awakeWaitingTimeInterval = 3;
-    JPDebugLog(@"重置了播放唤醒等待时间");
+    JPDebugLog(@"Reset wake-up wait time");
 }
 
 - (void)updateAwakeWaitingTimerInterval {

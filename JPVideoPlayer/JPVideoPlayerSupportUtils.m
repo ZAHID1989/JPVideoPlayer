@@ -163,7 +163,7 @@ NS_ASSUME_NONNULL_BEGIN
     self.contentInformationRequest.byteRangeAccessSupported = [response jp_supportRange];
     self.contentInformationRequest.contentType = CFBridgingRelease(contentType);
     self.contentInformationRequest.contentLength = [response jp_fileLength];
-    JPDebugLog(@"填充了响应信息到 contentInformationRequest");
+    JPDebugLog(@"Filled with response information to contentInformationRequest");
 }
 
 @end
