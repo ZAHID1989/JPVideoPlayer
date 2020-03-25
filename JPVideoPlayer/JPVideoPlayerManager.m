@@ -36,6 +36,7 @@
                                   JPApplicationStateMonitorDelegate>
 
 @property (strong, nonatomic, readwrite, nonnull) JPVideoPlayerCache *videoCache;
+@property (strong, nonatomic) NSMutableArray *downloads;
 
 @property (strong, nonatomic) JPVideoPlayerDownloader *videoDownloader;
 
